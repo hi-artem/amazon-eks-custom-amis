@@ -4,6 +4,8 @@ set -o pipefail
 set -o nounset
 set -o errexit
 
+systemctl start docker
+
 # get fragment paths
 DOCKER_SERVICE_PATH=$(systemctl show -p FragmentPath docker.service | cut -d"=" -f2)
 DOCKER_SOCKET_PATH=$(systemctl show -p FragmentPath docker.socket | cut -d"=" -f2)
@@ -117,3 +119,5 @@ chown -R root:root /etc/default/docker
 touch /etc/sysconfig/docker
 chmod -R 0644 /etc/sysconfig/docker
 chown -R root:root /etc/sysconfig/docker
+
+systemctl stop docker

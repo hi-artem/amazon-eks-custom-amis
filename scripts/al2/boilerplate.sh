@@ -16,13 +16,21 @@ yum install -y parted system-lsb-core
 # enable the epel release
 amazon-linux-extras install epel -y
 
+# start docker
+systemctl start docker
+
 echo "ensure secondary disk is mounted to proper locations"
 partition_disks /dev/nvme2n1
+
+# remove old version of kernel
+package-cleanup --oldkernels --count=1 -y
 
 echo "configuring /etc/environment"
 configure_http_proxy
 configure_docker_environment
 configure_kubelet_environment
+
+systemctl stop docker
 
 echo "rebooting the instance"
 reboot

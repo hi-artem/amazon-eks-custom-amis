@@ -37,6 +37,9 @@ build-al2-1.18:
 build-al2-1.19:
 	$(MAKE) build PACKER_FILE=amazon-eks-node-al2.json eks_version=1.19
 
+build-al2-1.20:
+	$(MAKE) build PACKER_FILE=amazon-eks-node-al2.json eks_version=1.20
+
 # Ubuntu 18.04
 #-----------------------------------------------------
 build-ubuntu1804-1.15:
